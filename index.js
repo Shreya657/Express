@@ -1,7 +1,9 @@
-const express = require('express')
-require('dotenv').config()
-const app = express()
-const port = 4000
+import express from 'express'
+const app=express();
+import dotenv from 'dotenv';
+dotenv.config();
+ 
+
  const githubData={ //api.github.com/users/Shreya657
   "login": "Shreya657",
   "id": 181844581,
@@ -40,6 +42,39 @@ const port = 4000
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+//get a list of 5  jokes
+app.get("/api/j",(req,res)=>{
+  const joke=[
+    {
+      id:1,
+      title:"A joke",
+      content:'this is a joke'
+    },
+     {
+      id:2,
+      title:"Another joke",
+      content:'this is another joke'
+    },
+    {
+      id:3,
+      title:"3rd joke",
+      content:'this is 3rd joke'
+    },
+    {
+      id:4,
+      title:"4th joke",
+      content:'this is 4th joke'
+    },
+    {
+      id:5,
+      title:"last joke",
+      content:'this is last joke'
+    },
+  ]
+  res.send(joke);
+})
+
 app.get('/x', (req, res) => {
   res.send('<h1>hey im shreya</h1>');
 })
@@ -49,7 +84,7 @@ app.get('/c', (req, res) => {
 app.get('/g', (req, res) => {
   res.json(githubData);
 })
-
-app.listen(process.env.PORT, () => {
+const port=process.env.PORT || 3000;
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
